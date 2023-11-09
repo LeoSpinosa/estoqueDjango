@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from .models import Products, Categories
 from random import randint
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+
+
+@login_required(redirect_field_name='login')
 
 def index(request):
 
