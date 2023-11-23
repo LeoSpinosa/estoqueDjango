@@ -11,7 +11,6 @@
 
 </head>
 <body>
-    <h1>{{user}}</h1>
     <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'home' %}">Stock</a>
@@ -41,6 +40,9 @@
           </form>
         </div>
       </nav>
+      <h1>
+        <a href="{% url 'logout' %}">Sair</a>
+      </h1>
       <div class="container m-5">
         <section>
           <a href="{% url 'add_product' %}" class="btn btn-primary" href="#" role="button">Adicionar Produto</a>

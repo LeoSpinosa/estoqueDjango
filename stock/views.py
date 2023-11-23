@@ -8,10 +8,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(redirect_field_name='login')
 
 def index(request):
-
-    produtos = Products.objects.filter(in_stock = True)
-    # for produto in produtos:
-    #     print(produto.name + produto.price)
+    produtos = Products.objects.filter(in_stock = True, user_id=request.user.id)
     return render(request, 'pages/index.html', {'produtos':produtos})
 
 def search_product(request):
@@ -47,8 +44,17 @@ def add_product(request):
             in_stock = False 
 
         Products.objects.create(
-            name=name, cod=cod, category_id=category, picture=picture, price=price, description=description, qtd=qtd, discount=discount, 
-            created_at=created_at, in_stock=in_stock
+            user_id=request.user.id,
+            name=name, 
+            cod=cod, 
+            category_id=category, 
+            picture=picture, 
+            price=price, 
+            description=description, 
+            qtd=qtd, 
+            discount=discount, 
+            created_at=created_at, 
+            in_stock=in_stock
         )
 
         return redirect('home')
